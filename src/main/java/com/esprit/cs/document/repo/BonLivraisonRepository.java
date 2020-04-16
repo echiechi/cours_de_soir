@@ -5,5 +5,5 @@ import com.esprit.cs.document.model.BonLivraison;
 import javax.transaction.Transactional;
 
 @Transactional
-public interface BonLivraisonRepository extends DocumentRepository<BonLivraison> {
+interface BonLivraisonRepository extends DocumentRepository<BonLivraison> {
 }

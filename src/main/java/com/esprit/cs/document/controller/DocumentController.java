@@ -1,7 +1,14 @@
 package com.esprit.cs.document.controller;
 
+import com.esprit.cs.document.exceptions.DocumentException;
+import com.esprit.cs.document.model.BonRetour;
+import com.esprit.cs.document.model.BonTransfert;
 import com.esprit.cs.document.model.Document;
-import com.esprit.cs.document.repo.DocumentRepository;
+import com.esprit.cs.document.model.enums.DocumentType;
+import com.esprit.cs.document.repo.BonLivraisonRepository;
+import com.esprit.cs.document.repo.BonRetourRepository;
+import com.esprit.cs.document.repo.BonTransfertRepository;
+import com.esprit.cs.document.services.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,24 +18,18 @@ import java.util.List;
 @RequestMapping("/api")
 public class DocumentController {
 
+
     @Autowired
-    DocumentRepository documentRepository;
+    DocumentService documentService;
 
-    @GetMapping("documents")
-    List<Document> fetchDocuments() {
-        return documentRepository.findAll();
-    }
-
-    @PostMapping("documents")
-    Document addDocument(@RequestBody Document document) {
-        return documentRepository.save(document);
-    }
-
-    @DeleteMapping("documents/{id}")
-    Document deleteDocumentById(@PathVariable Long id) {
-        Document doc = documentRepository.findById(id).get();
-        documentRepository.delete(doc);
-        return doc;
+    @PostMapping("documents/{type}")
+    Document addDocument(@RequestBody Document document, @PathVariable("type") DocumentType documentType) {
+        try {
+            return documentService.createDocument(documentType, document);
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

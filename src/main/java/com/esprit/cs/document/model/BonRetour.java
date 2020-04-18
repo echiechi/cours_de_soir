@@ -22,4 +22,11 @@ public class BonRetour extends Document {
     private String id;
     private DocumentType type = DocumentType.BR;
 
+    public String getId() {
+        return id;
+    }
+
+    public DocumentType getType() {
+        return type;
+    }
 }

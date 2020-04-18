@@ -7,6 +7,8 @@ import com.esprit.cs.document.services.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class DocumentController {
@@ -25,4 +27,13 @@ public class DocumentController {
         return null;
     }
 
+    @GetMapping("documents")
+    List<Document> getDocuments() {
+        try {
+            return documentService.getDocuments();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

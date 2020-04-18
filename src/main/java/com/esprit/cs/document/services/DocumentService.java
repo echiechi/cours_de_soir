@@ -7,6 +7,7 @@ import com.esprit.cs.document.model.enums.DocumentType;
 import com.esprit.cs.document.repo.DocumentRepositoryFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class DocumentService {
@@ -17,5 +18,9 @@ public class DocumentService {
     public Document createDocument(DocumentType documentType, Document document) throws DocumentException {
         DocumentFactory documentFactory = new DocumentFactory(document);
         return (Document) documentRepositoryFactory.getRepository(documentType).save(documentFactory.getDocument(documentType));
+    }
+
+    public List<Document> getDocuments() throws DocumentException {
+        return (List<Document>) documentRepositoryFactory.getRepository(DocumentType.values()[0]).findAll();
     }
 }

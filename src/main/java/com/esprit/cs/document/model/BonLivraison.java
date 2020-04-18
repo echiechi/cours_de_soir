@@ -22,4 +22,12 @@ public class BonLivraison extends Document {
     private String id;
     private DocumentType type = DocumentType.BL;
 
+    public String getId() {
+        return id;
+    }
+
+    public DocumentType getType() {
+        return type;
+    }
+
 }

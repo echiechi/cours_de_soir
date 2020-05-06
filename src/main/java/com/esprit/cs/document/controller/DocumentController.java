@@ -27,6 +27,16 @@ public class DocumentController {
         return null;
     }
 
+    @PutMapping("document/{id}")
+    Document updateDocument(@PathVariable("id") String id, @RequestBody Document document) {
+        try {
+            return documentService.updateDocument(document, id);
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     @GetMapping("documents")
     List<Document> getDocuments() {
         try {

@@ -26,6 +26,10 @@ public class BonLivraison extends Document {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+    
     public DocumentType getType() {
         return type;
     }

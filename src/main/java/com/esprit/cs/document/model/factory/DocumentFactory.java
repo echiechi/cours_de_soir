@@ -40,4 +40,32 @@ public class DocumentFactory {
         }
     }
 
+    public Document getDocumentWithId(DocumentType documentType, String id) throws DocumentException {
+        switch (documentType) {
+            case BT: {
+                BonTransfert bt = new BonTransfert();
+                bt.setId(id);
+                bt.setDate(document.getDate());
+                bt.setQuantity(document.getQuantity());
+                return bt;
+            }
+            case BL: {
+                BonLivraison bl = new BonLivraison();
+                bl.setId(id);
+                bl.setDate(document.getDate());
+                bl.setQuantity(document.getQuantity());
+                return bl;
+            }
+            case BR: {
+                BonRetour br = new BonRetour();
+                br.setId(id);
+                br.setDate(document.getDate());
+                br.setQuantity(document.getQuantity());
+                return br;
+            }
+            default:
+                throw new DocumentException("unsupported document type");
+        }
+    }
+
 }
